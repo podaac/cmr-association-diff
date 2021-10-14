@@ -273,7 +273,7 @@ requests = "*"
 
 [package.source]
 type = "git"
-url = "git@github.com:nasa/python_cmr.git"
+url = "https://github.com/nasa/python_cmr.git"
 reference = "develop"
 resolved_reference = "b8db10525d058eba193e2effffc98fa3ec5c30f1"
 
@@ -363,7 +363,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "c622b8546273b654fa6f9be7a4d2ee9e058507be1cb508292504ca6d0e6d9bd8"
+content-hash = "44fb9ea86419da0f55c98184790597cbcc9f513a004bb3db7e66bee3ef90a034"
 
 [metadata.files]
 astroid = [
