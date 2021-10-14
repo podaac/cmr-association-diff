@@ -273,9 +273,9 @@ requests = "*"
 
 [package.source]
 type = "git"
-url = "https://github.com/sliu008/python_cmr.git"
-reference = "feature/toolsandservices"
-resolved_reference = "c1407d9b2e4fd2836660ab43e3990d4e076e727e"
+url = "git@github.com:nasa/python_cmr.git"
+reference = "develop"
+resolved_reference = "b8db10525d058eba193e2effffc98fa3ec5c30f1"
 
 [[package]]
 name = "requests"
@@ -363,7 +363,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "444b12685e523e62e735b1b02c11f8c5dbcdd1ff9be687813c1689a89ad91526"
+content-hash = "c622b8546273b654fa6f9be7a4d2ee9e058507be1cb508292504ca6d0e6d9bd8"
 
 [metadata.files]
 astroid = [
