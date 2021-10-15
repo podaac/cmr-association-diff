@@ -261,21 +261,14 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "python-cmr"
-version = "0.4.1"
-description = ""
+version = "0.5.0"
+description = "Python wrapper to the NASA Common Metadata Repository (CMR) API."
 category = "main"
 optional = false
 python-versions = "*"
-develop = false
 
 [package.dependencies]
 requests = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/nasa/python_cmr.git"
-reference = "develop"
-resolved_reference = "b8db10525d058eba193e2effffc98fa3ec5c30f1"
 
 [[package]]
 name = "requests"
@@ -363,7 +356,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "44fb9ea86419da0f55c98184790597cbcc9f513a004bb3db7e66bee3ef90a034"
+content-hash = "997162bd6d5c9112fa77f0fbfddee13d4af037133cde585fa11ce31383853d83"
 
 [metadata.files]
 astroid = [
@@ -478,7 +471,10 @@ pytest = [
     {file = "pytest-5.4.3-py3-none-any.whl", hash = "sha256:5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"},
     {file = "pytest-5.4.3.tar.gz", hash = "sha256:7979331bfcba207414f5e1263b5a0f8f521d0f457318836a7355531ed1a4c7d8"},
 ]
-python-cmr = []
+python-cmr = [
+    {file = "python-cmr-0.5.0.tar.gz", hash = "sha256:f10df5e91a5e31cdee9286bd5dfb1e0a5d156c5f78210f6fc1768adef2675add"},
+    {file = "python_cmr-0.5.0-py3-none-any.whl", hash = "sha256:805fea0ee752fff2c717264dfc70778ea43ee7d0bca2e8a281b919fa6236a4b5"},
+]
 requests = [
     {file = "requests-2.26.0-py2.py3-none-any.whl", hash = "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24"},
     {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},

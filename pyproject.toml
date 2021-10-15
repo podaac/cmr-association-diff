@@ -6,7 +6,7 @@ authors = ["Simon Liu <simon.liu@jpl.nasa.gov>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-python-cmr = { git = "https://github.com/nasa/python_cmr.git", branch = "develop" }
+python-cmr = "^0.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
