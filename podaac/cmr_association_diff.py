@@ -20,7 +20,7 @@ import cmr
 
 def pull_concept_id(cmr_env, provider, umm_name, umm_type):
     """
-    Uses constructed native_id, cmr environment and provider string to
+    Uses constructed umm_name, cmr environment and provider string to
     pull concept_id for UMM record on CMR.
 
     Parameters
@@ -40,9 +40,8 @@ def pull_concept_id(cmr_env, provider, umm_name, umm_type):
     elif umm_type == "service":
         cmr_query = cmr.queries.ServiceQuery(mode=cmr_env)
 
-    native_id = f"{provider.lower()}_{umm_name.lower()}"
-    results = cmr_query.parameters(
-        provider=provider, native_id=native_id).get()
+    results = cmr_query.provider(provider).name(umm_name).get()
+
     if len(results) == 1:  # pylint: disable=R1705
         return results[0].get('concept_id')
     elif len(results) > 1:
