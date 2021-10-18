@@ -135,27 +135,57 @@ class TestCmrAssociationDiff(unittest.TestCase):
 
     @patch('podaac.cmr_association_diff.parse_args')
     @patch('podaac.cmr_association_diff.current_association')
-    def test_run_tool(self, mock_current_association, mock_parse):
+    @patch('cmr.queries.ToolQuery.get')
+    def test_run_tool(self,tool_get, mock_current_association, mock_parse):
         """test run for tool"""
 
         fake_args = MockArgs('T1234', 'tool')
         mock_parse.return_value = fake_args
         mock_current_association.return_value = ['T5555']
+        tool_get.return_value = [{'mock':'mock'}]
         with Capturing() as output:
             cmr_association_diff.run()
         self.assertEqual(json.loads(output[0]), ['T5555'])
 
     @patch('podaac.cmr_association_diff.parse_args')
     @patch('podaac.cmr_association_diff.current_association')
-    def test_run_service(self, mock_current_association, mock_parse):
+    @patch('cmr.queries.ToolQuery.get')
+    def test_run_invalid_concept_id_tool(self,tool_get, mock_current_association, mock_parse):
+        """test run for tool"""
+
+        fake_args = MockArgs('T1234', 'tool')
+        mock_parse.return_value = fake_args
+        mock_current_association.return_value = ['T5555']
+        tool_get.return_value = []
+        with self.assertRaises(Exception):
+            cmr_association_diff.run()
+
+    @patch('podaac.cmr_association_diff.parse_args')
+    @patch('podaac.cmr_association_diff.current_association')
+    @patch('cmr.queries.ServiceQuery.get')
+    def test_run_service(self, service_get, mock_current_association, mock_parse):
         """test run for service"""
 
         fake_args = MockArgs('S1234', 'service')
         mock_parse.return_value = fake_args
         mock_current_association.return_value = ['S5555']
+        service_get.return_value = [{'mock':'mock'}]
         with Capturing() as output:
             cmr_association_diff.run()
         self.assertEqual(json.loads(output[0]), ['S5555'])
+
+    @patch('podaac.cmr_association_diff.parse_args')
+    @patch('podaac.cmr_association_diff.current_association')
+    @patch('cmr.queries.ServiceQuery.get')
+    def test_run_invalid_concept_id_service(self, service_get, mock_current_association, mock_parse):
+        """test run for service"""
+
+        fake_args = MockArgs('S1234', 'service')
+        mock_parse.return_value = fake_args
+        mock_current_association.return_value = ['S5555']
+        service_get.return_value = []
+        with self.assertRaises(Exception):
+            cmr_association_diff.run()
 
     @patch('podaac.cmr_association_diff.parse_args')
     def test_run_invalid_concept_id(self, mock_method):

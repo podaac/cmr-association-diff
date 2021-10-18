@@ -169,6 +169,13 @@ def run():
         if provider is None or umm_name is None:
             raise Exception("Need concept id or provider and umm name")
         concept_id = pull_concept_id(cmr_env, provider, umm_name, umm_type)
+    else:
+        if umm_type == 'tool':
+            result = cmr.queries.ToolQuery(mode=cmr_env).parameters(concept_id=concept_id).get()
+        elif umm_type == 'service':
+            result = cmr.queries.ServiceQuery(mode=cmr_env).parameters(concept_id=concept_id).get()
+        if not result:
+            raise Exception(f"Could not retrieve umm {umm_type} using concept_id {concept_id}")
 
     with open(association_file) as file:  # pylint: disable=W1514
         collections = [x.strip() for x in file.readlines()]
