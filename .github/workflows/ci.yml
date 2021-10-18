@@ -23,8 +23,8 @@ jobs:
         python -m pip install poetry
         poetry install
     - name: pylint
-      run: poetry run pylint cmr_association_diff
+      run: poetry run pylint podaac
     - name: flake8
-      run: poetry run flake8 cmr_association_diff
+      run: poetry run flake8 podaac
     - name: pytest
       run: poetry run pytest tests
