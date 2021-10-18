@@ -1,8 +1,30 @@
+# Copyright 2021, by the California Institute of Technology.
+# ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+# Any commercial use must be negotiated with the Office of Technology
+# Transfer at the California Institute of Technology.
+#
+# This software may be subject to U.S. export control laws. By accepting
+# this software, the user agrees to comply with all applicable U.S. export
+# laws and regulations. User has the responsibility to obtain export
+# licenses, or other export authority as may be required before exporting
+# such information to foreign countries or providing access to foreign
+# persons.
+
 [tool.poetry]
 name = "cmr_association_diff"
 version = "0.1.0"
 description = ""
-authors = ["Simon Liu <simon.liu@jpl.nasa.gov>"]
+authors = ["podaac-tva <podaac-tva@jpl.nasa.gov>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/podaac/cmr-association-diff"
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+exclude = ['tests']
+packages = [
+    { include = "podaac" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -19,4 +41,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-cmr_association_diff = "cmr_association_diff.cmr_association_diff:run"
+cmr_association_diff = "podaac.cmr_association_diff:run"

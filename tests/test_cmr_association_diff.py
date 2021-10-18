@@ -8,7 +8,7 @@ from io import StringIO
 
 import cmr
 from mock import patch
-from cmr_association_diff import cmr_association_diff
+from podaac import cmr_association_diff
 
 
 class Capturing(list):
@@ -133,8 +133,8 @@ class TestCmrAssociationDiff(unittest.TestCase):
             'S1234', cmr.queries.CMR_OPS, 'service')
         self.assertEqual(['S1234', 'S2234', 'S3334'], service_concept_ids)
 
-    @patch('cmr_association_diff.cmr_association_diff.parse_args')
-    @patch('cmr_association_diff.cmr_association_diff.current_association')
+    @patch('podaac.cmr_association_diff.parse_args')
+    @patch('podaac.cmr_association_diff.current_association')
     def test_run_tool(self, mock_current_association, mock_parse):
         """test run for tool"""
 
@@ -145,8 +145,8 @@ class TestCmrAssociationDiff(unittest.TestCase):
             cmr_association_diff.run()
         self.assertEqual(json.loads(output[0]), ['T5555'])
 
-    @patch('cmr_association_diff.cmr_association_diff.parse_args')
-    @patch('cmr_association_diff.cmr_association_diff.current_association')
+    @patch('podaac.cmr_association_diff.parse_args')
+    @patch('podaac.cmr_association_diff.current_association')
     def test_run_service(self, mock_current_association, mock_parse):
         """test run for service"""
 
@@ -157,7 +157,7 @@ class TestCmrAssociationDiff(unittest.TestCase):
             cmr_association_diff.run()
         self.assertEqual(json.loads(output[0]), ['S5555'])
 
-    @patch('cmr_association_diff.cmr_association_diff.parse_args')
+    @patch('podaac.cmr_association_diff.parse_args')
     def test_run_invalid_concept_id(self, mock_method):
         """test run invalid concept id"""
 
