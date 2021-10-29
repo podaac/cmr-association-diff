@@ -34,6 +34,7 @@ class MockArgs():  # pylint: disable=R0903
         self.concept_id = concept_id
         self.type = umm_type
         self.assoc = dir_path + '/association.txt'
+        self.output_file = None
 
 
 class TestCmrAssociationDiff(unittest.TestCase):

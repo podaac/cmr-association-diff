@@ -144,6 +144,11 @@ def parse_args():
                         default=None,
                         metavar='associations.txt')
 
+    parser.add_argument('-o', '--output_file',
+                        help='File to output to',
+                        required=False,
+                        default=None)
+
     args = parser.parse_args()
     return args
 
@@ -184,6 +189,9 @@ def run():
 
     new_associations = list(set(current_concept_ids) - set(collections))
     if new_associations:
+        if _args.output_file:
+            with open(_args.output_file, 'w', encoding='utf-8') as output_file:
+                json.dump(new_associations, output_file, ensure_ascii=False, indent=4)
         print(json.dumps(new_associations))
 
 
