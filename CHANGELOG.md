@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **PODAAC-3849**
   - Implementation of cmr_association_diff
 
+- **PODAAC-3850**
+  - Update cmr_association_diff to output to a file
+
 ### Changed
 ### Deprecated
 ### Removed
