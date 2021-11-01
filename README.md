@@ -8,6 +8,7 @@ Python tool to compare tools and services collection associations in a text file
 $ cmr_association_diff --help
 usage: cmr_association_diff [-h] [-c] -e uat or ops [-p] [-n] -t
                             {tool,service} -a associations.txt
+                            [-o OUTPUT_FILE]
 
 Update CMR with latest profile
 
@@ -25,6 +26,8 @@ optional arguments:
                         Association concept ID or file containing many concept
                         IDs to be associated with UMM provided. (default:
                         None)
+  -o OUTPUT_FILE, --output_file OUTPUT_FILE
+                        File to output to (default: None)
 ```
 
 ## Example:
