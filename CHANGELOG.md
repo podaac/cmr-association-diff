@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New project
 
+- Added in token into cli and token into the cmr url request if a token is passed in.
+
+- Updated to use python 3.8
+
 - **PODAAC-3849**
   - Implementation of cmr_association_diff
 
