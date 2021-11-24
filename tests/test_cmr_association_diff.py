@@ -35,6 +35,7 @@ class MockArgs():  # pylint: disable=R0903
         self.type = umm_type
         self.assoc = dir_path + '/association.txt'
         self.output_file = None
+        self.token = None
 
 
 class TestCmrAssociationDiff(unittest.TestCase):
@@ -121,7 +122,7 @@ class TestCmrAssociationDiff(unittest.TestCase):
         mock_method.return_value = [
             {'id': 'T1234'}, {'id': 'T2234'}, {'id': 'T3334'}]
         tool_concept_ids = cmr_association_diff.current_association(
-            'T1234', cmr.queries.CMR_OPS, 'tool')
+            'T1234', cmr.queries.CMR_OPS, 'tool', None)
         self.assertEqual(['T1234', 'T2234', 'T3334'], tool_concept_ids)
 
     @patch('cmr.queries.CollectionQuery.get')
@@ -131,7 +132,7 @@ class TestCmrAssociationDiff(unittest.TestCase):
         mock_method.return_value = [
             {'id': 'S1234'}, {'id': 'S2234'}, {'id': 'S3334'}]
         service_concept_ids = cmr_association_diff.current_association(
-            'S1234', cmr.queries.CMR_OPS, 'service')
+            'S1234', cmr.queries.CMR_OPS, 'service', None)
         self.assertEqual(['S1234', 'S2234', 'S3334'], service_concept_ids)
 
     @patch('podaac.cmr_association_diff.parse_args')

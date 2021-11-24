@@ -73,7 +73,7 @@ def cmr_environment(env):
         raise Exception('CMR environment selection not recognized, select uat or ops.')
 
 
-def current_association(concept_id, cmr_env, umm_type):
+def current_association(concept_id, cmr_env, umm_type, token):
     """
     Get list of association concept ids currently in CMR for a service or tool
     Parameters
@@ -90,9 +90,9 @@ def current_association(concept_id, cmr_env, umm_type):
     cmr_query = cmr.queries.CollectionQuery(mode=cmr_env)
 
     if umm_type == "tool":
-        results = cmr_query.tool_concept_id(concept_id).get()
+        results = cmr_query.tool_concept_id(concept_id).token(token).get()
     elif umm_type == "service":
-        results = cmr_query.service_concept_id(concept_id).get()
+        results = cmr_query.service_concept_id(concept_id).token(token).get()
 
     return [res.get('id') for res in results]
 
@@ -149,6 +149,12 @@ def parse_args():
                         required=False,
                         default=None)
 
+    parser.add_argument('-to', '--token',
+                        help='CMR UMM token string.',
+                        default=None,
+                        required=False,
+                        metavar='Launchpad token or EDL token')
+
     args = parser.parse_args()
     return args
 
@@ -168,6 +174,11 @@ def run():
     umm_type = _args.type
     association_file = _args.assoc
 
+    if _args.token:
+        current_token = _args.token
+    else:
+        current_token = None
+
     if concept_id is None:
         provider = _args.provider
         umm_name = _args.umm_name
@@ -176,16 +187,16 @@ def run():
         concept_id = pull_concept_id(cmr_env, provider, umm_name, umm_type)
     else:
         if umm_type == 'tool':
-            result = cmr.queries.ToolQuery(mode=cmr_env).parameters(concept_id=concept_id).get()
+            result = cmr.queries.ToolQuery(mode=cmr_env).concept_id(concept_id).token(current_token).get()
         elif umm_type == 'service':
-            result = cmr.queries.ServiceQuery(mode=cmr_env).parameters(concept_id=concept_id).get()
+            result = cmr.queries.ServiceQuery(mode=cmr_env).concept_id(concept_id).token(current_token).get()
         if not result:
             raise Exception(f"Could not retrieve umm {umm_type} using concept_id {concept_id}")
 
     with open(association_file) as file:  # pylint: disable=W1514
         collections = [x.strip() for x in file.readlines()]
 
-    current_concept_ids = current_association(concept_id, cmr_env, umm_type)
+    current_concept_ids = current_association(concept_id, cmr_env, umm_type, current_token)
 
     new_associations = list(set(current_concept_ids) - set(collections))
     if new_associations:

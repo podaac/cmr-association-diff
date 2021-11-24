@@ -27,8 +27,8 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-python-cmr = "^0.6.0"
+python = "^3.8"
+python-cmr = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
