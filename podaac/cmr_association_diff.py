@@ -39,6 +39,8 @@ def pull_concept_id(cmr_env, provider, umm_name, umm_type):
         cmr_query = cmr.queries.ToolQuery(mode=cmr_env)
     elif umm_type == "service":
         cmr_query = cmr.queries.ServiceQuery(mode=cmr_env)
+    else:
+        raise Exception("umm_type must be tool or service")
 
     results = cmr_query.provider(provider).name(umm_name).get()
 
@@ -190,6 +192,9 @@ def run():
             result = cmr.queries.ToolQuery(mode=cmr_env).concept_id(concept_id).token(current_token).get()
         elif umm_type == 'service':
             result = cmr.queries.ServiceQuery(mode=cmr_env).concept_id(concept_id).token(current_token).get()
+        else:
+            raise Exception("umm_type must be tool or service")
+
         if not result:
             raise Exception(f"Could not retrieve umm {umm_type} using concept_id {concept_id}")
 
